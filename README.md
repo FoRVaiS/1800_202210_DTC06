@@ -11,6 +11,8 @@ Hello my name is Andrew and I am editing README.md
 	
 Hi I am Ben!
 
+Hi I am Alex!
+
 ## Technologies
 Technologies used for this project:
 * HTML, CSS
