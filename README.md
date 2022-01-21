@@ -12,7 +12,6 @@ Hello my name is Andrew and I am editing README.md
 	
 =======
 Hi I am Ben!
-Hi I am Alex!
 
 >>>>>>> 3074b36cfabe5ace5fde1a6dbb131483f350c47c
 ## Technologies
