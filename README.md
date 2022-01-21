@@ -6,6 +6,8 @@
 
 ## General Info
 This browser based web application to ...
+
+Hello my name is Andrew and I am editing README.md
 	
 ## Technologies
 Technologies used for this project:
