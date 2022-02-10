@@ -7,13 +7,10 @@
 ## General Info
 This browser based web application to ...
 
-<<<<<<< HEAD
 Hello my name is Andrew and I am editing README.md
 	
-=======
 Hi I am Ben!
 
->>>>>>> 3074b36cfabe5ace5fde1a6dbb131483f350c47c
 ## Technologies
 Technologies used for this project:
 * HTML, CSS
