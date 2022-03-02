@@ -11,31 +11,61 @@
 
     <!-- bootstrap 5 js CDM -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        #bannerPho {
+            background-image: url("../images/pho_img.jpeg");
+            background-size:cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            width:100%;
+            height: 300px;
+        }
+
+        #saveIcon {
+            border: 3px solid black;
+            background-image: url("../icon/icon-heart-pink.png");
+            background-position: center;
+            background-size: 90%;
+            width:50px;
+            height: 50px;
+        }
+
+        #shareIcon {
+            border: 3px solid black;
+            background-image: url("../icon/icons8-share-64.png");
+            background-position: center;
+            background-size: 90%;
+            width:50px;
+            height: 50px;
+        }
+    </style>
+
 </head>
 
 <body>
-    <div class="container">
-        <img src="#" alt="restaurant image">
+    <div id="bannerPho">
+        <!-- background image -->
     </div>
-    <div class="container text-center bg-light">
-        <h3>restaurant name</h3>
+
+    <div class="container-fluid">
+        <h3 class="bg-primary">restaurant name</h3>
 
     </div>
-    <div class="container">
-        <div>
-
-        </div>
-        <input type="button" value="save" id="saveButton">
-        <input type="button" value="share" id="shareButton">
+    <div class="container-fluid text-center">
+        <button class="rounded-circle" id="saveIcon"> <!--saveIcon-->
+        </button>
+        <button class="rounded-circle" id="shareIcon"> <!--shareIcon-->
+        </button>
     </div>
-    <div class="container text-start">
-        <ul class="list-unstyled">
-                <li>location</li>
-                <li>operation hours</li>
-                <li>menu</li>
-                <li>address</li>
-                <li>contact info (phone number))</li>
-                <li>reviews</li>
+    <div class="card" style="padding-right:0;">
+        <ul class="list-group  mx-0" style="width:100%">
+            <li class="list-group-item">location</li>
+            <li class="list-group-item">operation hours</li>
+            <li class="list-group-item">menu</li>
+            <li class="list-group-item">address</li>
+            <li class="list-group-item">contact info (phone number))</li>
+            <li class="list-group-item">reviews</li>
         </ul>
     </div>
 
