@@ -18,6 +18,7 @@ img {
 .name {
     font-size: 22px;
     padding: 10px, 0px;
+    font-weight: bold;
 }
 
 .profile-content {
