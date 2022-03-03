@@ -3,13 +3,12 @@
     padding: 0;
 }
 
-
 img {
     border-radius: 50%;
 }
 
 .card {
-    width: 400px;
+    width: 100%;
     background-color: #efefef;
     border: none;
     cursor: pointer;
@@ -45,5 +44,13 @@ img {
 
 #button {
     padding-top: 30px;
+}
+
+.container {
+    min-width: 300px;
+}
+
+h1 {
+    font-weight: bold;
 }
 
