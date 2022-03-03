@@ -56,8 +56,11 @@ a {
 .navbar__item {
   padding: 16px;
 }
-.navbar__profile {
+.navbar__profile[data-signed-in] {
   display: inline-flex;
+}
+.navbar__profile {
+  display: none;
   grid-area: navbar__profile-picture;
   padding-inline: 16px;
 }
