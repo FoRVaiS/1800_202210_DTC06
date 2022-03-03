@@ -22,22 +22,27 @@
             height: 300px;
         }
 
-        #saveIcon {
+        /* #saveIcon {
             border: 3px solid black;
             background-image: url("../icon/icon-heart-pink.png");
             background-position: center;
             background-size: 90%;
             width:50px;
             height: 50px;
-        }
+        } */
 
-        #shareIcon {
+        /* #shareIcon {
             border: 3px solid black;
             background-image: url("../icon/icons8-share-64.png");
             background-position: center;
             background-size: 90%;
             width:50px;
             height: 50px;
+        } */
+
+        .buttonFront {
+            margin: 5px 10px;
+
         }
     </style>
 
@@ -53,19 +58,18 @@
 
     </div>
     <div class="container-fluid text-center">
-        <button class="rounded-circle" id="saveIcon"> <!--saveIcon-->
+        <button class="rounded-circle" id="saveIcon"><img src="../icon/save-heart.svg" alt="save-icon">
         </button>
-        <button class="rounded-circle" id="shareIcon"> <!--shareIcon-->
+        <button class="rounded-circle" id="shareIcon"><img src="../icon/share-fill.svg" alt="share-icon">
         </button>
     </div>
     <div class="card">
         <ul class="list-group  mx-0" style="width:100%">
-            <li class="list-group-item" id="#">location</li>
-            <li class="list-group-item" id="#">operation hours</li>
-            <li class="list-group-item" id="#">menu</li>
-            <li class="list-group-item" id="#">address</li>
-            <li class="list-group-item" id="#">contact info (phone number))</li>
-            <li class="list-group-item" id="#">reviews</li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/location-geo-fill.svg" alt="location-icon">location</li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/clock-fill.svg" alt="clock-icon">operation hours</li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/book-fill.svg" alt="menu-icon">menu</li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/telephone-fill.svg" alt="telephone-icon">contact info (phone number))</li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/"> list </li>
         </ul>
     </div>
 
