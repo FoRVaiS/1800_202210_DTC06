@@ -1,67 +1,48 @@
-
-/* CSS for Profile Page */
-
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 
 img {
-    margin: 10px;
-    padding: 10px;
     border-radius: 50%;
 }
 
-#profile {
-    padding: 30px 0px;
-    margin: 30px 0px 20px 0px;
-    border: black 1px solid;
-    width: 50%;
-    justify-content: center;
-    border-radius: 20px;
+.card {
+    width: 400px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
 }
 
-#profile_photo {
-    display: flex;
-    justify-content: center;
+.name {
+    font-size: 22px;
+    padding: 10px, 0px;
 }
 
-#profile-div {
-    border: 1px black solid;
-    margin: 20px;
-    padding: 20px;
-    width: 94%;
-    background-color: lightgrey;
-    border-radius: 20px;
+.profile-content {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 2px;
 }
 
-label {
+.btn1 {
+    height: 50px;
+    width: 150px;
+    border: none;
+    background-color: lightgray;
+    color: black;
     font-size: 16px;
-    font-weight: bold
+    font-weight: bold;
+}
+
+.text span {
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
 }
 
 #button {
-    justify-content:;
+    padding-top: 30px;
 }
 
-#name {
-    font-weight: bold;
-    padding: 20px 0px 5px 0px;
-}
-
-#country_lang {
-    font-weight: bold;
-    padding: 5px 0px;
-}
-
-#biography {
-    float: left;
-    text-align: right;
-}
-
-#main_profile {
-    float: left;
-    text-align: right;
-}
