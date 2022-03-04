@@ -1,3 +1,8 @@
+function emulateSignIn(user = "Test User")  {
+    $('#username').text(user);
+    $('.navbar__profile').attr("data-signed-in", true);
+}
+
 function sayHello() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
