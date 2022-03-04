@@ -17,37 +17,62 @@
 
     <style>
         .card {
+            box-sizing: border-box;
             flex-direction: row;
             width: 95%;
             margin: 5px auto;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px 5px rgba(0, 0, 0, 0.2), 0 15px 20px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card {
+            font-size: 10 vw;
         }
 
         .card img {
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 10px;
             height: 10%;
-            width:30%;
+            width: 30%;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: pink;
+            overflow: hidden;
+            position: relative;
         }
+
+        
     </style>
 </head>
 
 <body>
+    <div class="navbar"></div>
 
     <!-- card 1 -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title pb-4">Pho King Good</h5>
+            <ul class="list-group list-group-flush">
+                <li class=" list-group-item border-white "><span id='addressBracket'>address</span></li>
+                <li class=" list-group-item border-white"><span id='descriptionBracket'>description</span></li>
+                <li class=" list-group-item border-white"><span id='hoursBracket'>hours</span></li>
+            </ul>
+        </div>
+        <img class="wrap" src="../images/pho_img.jpeg" alt="pho-img">
 
+    </div>
 
     <!-- card 2 -->
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Pho King Good</h5>
-            <p class="card-text">
-                <div>address</div>
-                <div>description</div>
-                <div>hours</div>
-                
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title pb-4">Pho King Good</h5>
+            <ul class="list-group list-group-flush">
+                <li class=" list-group-item border-white "><span id='addressBracket'>address</span></li>
+                <li class=" list-group-item border-white"><span id='descriptionBracket'>description</span></li>
+                <li class=" list-group-item border-white"><span id='hoursBracket'>hours</span></li>
+            </ul>
         </div>
-        <img src="../images/pho_img.jpeg">
+        <img class="wrap" src="../images/pho_img.jpeg" alt="pho-img">
 
     </div>
 
