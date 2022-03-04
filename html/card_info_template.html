@@ -12,18 +12,37 @@
     <!-- bootstrap 5 js CDM -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- global style -->
     <link rel="stylesheet" href="../css/global_styles.css">
+
+    <style>
+        .card {
+            flex-direction: row;
+        }
+
+        .card img {
+            height: 10%;
+            width:30%;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- card 1 -->
-    <div class="row">
 
-            <p class="w-75 bg-primary">this is my card</p>
-            <img class="w-25" src="../images/pho_img.jpeg" class="imageHoler"></img>
+
+    <!-- card 2 -->
+    <div class="card flex-row">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <img src="../images/pho_img.jpeg">
+
     </div>
-
 
     <!-- footer -->
     <footer class="footer"></footer>
