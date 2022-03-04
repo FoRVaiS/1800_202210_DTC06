@@ -1,0 +1,22 @@
+.party__member {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-gap: 16px;
+  padding: 8px;
+  margin: 8px 0;
+  background-color: #292929;
+  border-radius: 3px;
+  text-decoration: none;
+  color: white;
+}
+.party__member-name {
+    align-self: center;
+    margin: 0;
+}
+.party__profile-wrapper {
+  display: flex;
+  align-items: center;
+}
+.party__profile-picture {
+  border-radius: 50%;
+}
