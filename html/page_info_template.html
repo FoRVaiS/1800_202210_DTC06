@@ -11,11 +11,10 @@
 
     <!-- bootstrap 5 js CDM -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
     <link rel="stylesheet" href="../css/global_styles.css">
     <style>
+
         #imageBanner {
             background-image: url("../images/pho_img.jpeg");
             background-size:cover;
@@ -30,9 +29,10 @@
             background-image: url("../icon/save-heart.svg");
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 65%;
+            background-size: 60%;
             width: 30px;
             height: 30px;
+            margin-right:10px;
         }
 
         #shareIcon {
@@ -40,18 +40,17 @@
             background-image: url("../icon/share-fill.svg");
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 65%;
+            background-size: 60%;
             width: 30px;
             height: 30px;
+            margin-right: 10px;
         }
-
 
 
         .buttonFront {
             margin: 5px 10px;
-            width:10px;
-            height:10px;
-
+            width:15px;
+            height:15px;
         }
     </style>
 
@@ -64,11 +63,17 @@
         <!-- background image -->
     </div>
 
-    <div class="bg-info">
-        <h3 id="restaurantName">restaurant name</h3>
+    <div class="bg-primary">
+        <div id="restaurantName"><h3 style="padding: 10px 0px 10px 15px;">restaurant name</h3></div>
+        <div class="list-group list-group-horizontal-sm">
+            <li class="list-group-item flex-fill border border-white" >⭐️⭐️⭐️</li>
+            <li class="list-group-item flex-fill border border-white" >100 reviews</li>
+            <li class="list-group-item flex-fill border border-white" >Vietnamese restaurant</li>
+        </div>
+
 
     </div>
-    <div class="container-fluid text-center">
+    <div class="container-fluid text-center bg-info pt-3 pb-3">
         <button class="rounded-circle" id="saveIcon">
             <!-- <img class="rounded-circle" src="../icon/save-heart.svg" alt="save-icon"> -->
         </button>
@@ -78,11 +83,10 @@
     </div>
     <div class="card">
         <ul class="list-group  mx-0" style="width:100%">
-            <li class="list-group-item" ><img class="buttonFront" src="../icon/location-geo-fill.svg" alt="location-icon">location</li>
-            <li class="list-group-item" ><img class="buttonFront" src="../icon/clock-fill.svg" alt="clock-icon">operation hours</li>
-            <li class="list-group-item" ><img class="buttonFront" src="../icon/book-fill.svg" alt="menu-icon">menu</li>
-            <li class="list-group-item" ><img class="buttonFront" src="../icon/telephone-fill.svg" alt="telephone-icon">contact info (phone number))</li>
-            <li class="list-group-item" ><img class="buttonFront" src="../icon/"> list </li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/location-geo-fill.svg" alt="location-icon" id="locationIcon">location</li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/clock-fill.svg" alt="clock-icon" id="clockIcon">operation hours</li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/book-fill.svg" alt="menu-icon" id="menuIcon">menu</li>
+            <li class="list-group-item" ><img class="buttonFront" src="../icon/telephone-fill.svg" alt="telephone-icon" id="telephoneIcon">contact info (phone number)</li>
         </ul>
     </div>
 
