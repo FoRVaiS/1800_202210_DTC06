@@ -1,0 +1,20 @@
+
+h3, p {
+    font-weight: bold;
+}
+
+#intro_paragraph {
+   padding: 20px 50px 0px 50px;
+}
+
+#mandatory {
+    padding: 0px 50px;
+}
+
+/* #radio_buttons > p {
+    font-weight: bold;
+} */
+
+#optional {
+    padding: 0px 50px;
+}

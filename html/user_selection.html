@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comidas</title>
+
+    <!-- Vendors -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="../css/global_styles.css">
+    <link rel="stylesheet" href="../css/user_selection.css">
+</head>
+
+<body>
+    <!------------------------------>
+    <!----------HTML Layout--------->
+    <!------------------------------>
+
+    <!-- navbar -->
+    <nav class="navbar"></nav>
+
+    <!--------------------->
+    <!-- Intro Paragraph -->
+    <!--------------------->
+    <div id="intro_paragraph">
+        <h3>Next steps</h3>
+        <p style="font-weight: 400;">Thanks for registering for Comitas. To complete your account and get access to all
+            features, please complete
+            the following fields.</p>
+    </div>
+
+    <!---------------------->
+    <!-- Mandatory Fields -->
+    <!---------------------->
+    <div id="mandatory">
+        <p>(Mandatory) Are you registering as a local or tourist?</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Tourist
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Local
+            </label>
+        </div>
+
+        <br>
+
+        <p>(Mandatory) What activity are you most interested in? Please select one of the following.
+        </p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Indoor sports
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Outdoor sports
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Restaurants
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Sight-seeing
+            </label>
+        </div>
+        <br>
+    </div>
+
+    <!--------------->
+    <!-- Biography -->
+    <!--------------->
+    <div id="optional">
+
+        <p>(Optional): Write a sentence or two about yourself.</p>
+
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Comments</label>
+
+            <br>
+
+            <button>Confirm</button>
+
+        </div>
+
+        <br>
+
+    </div>
+
+
+    <!-- footer -->
+    <footer class="footer"></footer>
+
+    <!-- Link to scripts of your own -->
+    <script src="../js/load-partials.js"></script>
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>
