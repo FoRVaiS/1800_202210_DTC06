@@ -137,62 +137,33 @@ function writeWebcamData() {
     })
 }
 
-function writeRestaurants() {
-    //define a variable for the collection you want to create in Firestore to populate data
-    var restaurantsRef = db.collection("Restaurants");
 
-    restaurantsRef.add({
-        id: "RES1",
-        name: "Pho King Good",
-        address: "1234 King Street",
-        city: "Vancouver",
-        province: "BC",
-        description: "Yummy Vietnamese Pho",
-    });
-    restaurantsRef.add({
-        id: "RES2",
-        name: "The Greek",
-        address: "456 Knight Street",
-        city: "Vancouver",
-        province: "BC",
-        description: "Delicious Greek Food",
-    });
-    restaurantsRef.add({
-        id: "RES3",
-        name: "Gyoza Bar",
-        address: "555 Seymour Street",
-        city: "Vancouver",
-        province: "BC",
-        description: "Savoury Japanese food for take-out",
-    });
+function populateCardsDynamically() {
+    let hikeCardTemplate = document.getElementById("hikeCardTemplate");
+    let hikeCardGroup = document.getElementById("hikeCardGroup");
+
+    db.collection("Restaurants").get()
+        .then(allHikes => {
+            allHikes.forEach(doc => {
+                var hikeName = doc.data().name; //gets the name field
+                var hikeID = doc.data().id; //gets the unique ID field
+                var description = doc.data().description; //gets the length field
+                let testHikeCard = hikeCardTemplate.content.cloneNode(true);
+                testHikeCard.querySelector('.card-title').innerHTML = hikeName;
+                testHikeCard.querySelector('.card-length').innerHTML = description;
+                testHikeCard.querySelector('a').onclick = () => setHikeData(hikeID);
+                // testHikeCard.querySelector('img').src = `./images/${hikeID}.jpg`;
+                hikeCardGroup.appendChild(testHikeCard);
+            })
+
+        })
 }
 
-// function populateCardsDynamically() {
-//     let hikeCardTemplate = document.getElementById("hikeCardTemplate");
-//     let hikeCardGroup = document.getElementById("hikeCardGroup");
+populateCardsDynamically();
 
-//     db.collection("Hikes").get()
-//         .then(allHikes => {
-//             allHikes.forEach(doc => {
-//                 var hikeName = doc.data().name; //gets the name field
-//                 var hikeID = doc.data().id; //gets the unique ID field
-//                 var hikeLength = doc.data().length; //gets the length field
-//                 let testHikeCard = hikeCardTemplate.content.cloneNode(true);
-//                 testHikeCard.querySelector('.card-title').innerHTML = hikeName;
-//                 testHikeCard.querySelector('.card-length').innerHTML = hikeLength;
-//                 testHikeCard.querySelector('a').onclick = () => setHikeData(hikeID);
-//                 testHikeCard.querySelector('img').src = `./images/${hikeID}.jpg`;
-//                 hikeCardGroup.appendChild(testHikeCard);
-//             })
-
-//         })
-// }
-
-// populateCardsDynamically();
-
-// function setHikeData(id) {
-//     localStorage.setItem('hikeID', id);
-// }
+function setHikeData(id) {
+    localStorage.setItem('hikeID', id);
+}
 
 function shareButton() {
     alert("This is an alert");
