@@ -1,17 +1,17 @@
-function emulateSignIn(user = "Test User")  {
+function emulateSignIn(user = "Test User") {
     $('#username').text(user);
     $('.navbar__profile').attr("data-signed-in", true);
 }
 
 function sayHello() {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
             // Do something for the user here. 
             console.log(user.uid);
             db.collection("users").doc(user.uid)
                 .get()
-                .then(function (doc) {
+                .then(function(doc) {
                     var n = doc.data().name;
                     console.log(n);
                     //$("#username").text(n);
@@ -33,8 +33,7 @@ function writeWebcamData() {
                 "url": "http://images.drivebc.ca/bchighwaycam/pub/html/www/17.html",
                 "geom": {
                     "type": "Point",
-                    "coordinates": [
-                        -123.136736007805,
+                    "coordinates": [-123.136736007805,
                         49.2972589838826
                     ]
                 },
@@ -50,8 +49,7 @@ function writeWebcamData() {
                 "url": "http://images.drivebc.ca/bchighwaycam/pub/html/www/20.html",
                 "geom": {
                     "type": "Point",
-                    "coordinates": [
-                        -123.129968,
+                    "coordinates": [-123.129968,
                         49.324891
                     ]
                 },
@@ -67,8 +65,7 @@ function writeWebcamData() {
                 "url": "https://trafficcams.vancouver.ca/cambie49.htm",
                 "geom": {
                     "type": "Point",
-                    "coordinates": [
-                        -123.116492357278,
+                    "coordinates": [-123.116492357278,
                         49.2261139995231
                     ]
                 },
@@ -85,8 +82,7 @@ function writeWebcamData() {
                 "url": "https://trafficcams.vancouver.ca/cambie41.htm",
                 "geom": {
                     "type": "Point",
-                    "coordinates": [
-                        -123.116192190431,
+                    "coordinates": [-123.116192190431,
                         49.2335434721856
                     ]
                 },
@@ -103,8 +99,7 @@ function writeWebcamData() {
                 "url": "https://trafficcams.vancouver.ca/cambie25.htm",
                 "geom": {
                     "type": "Point",
-                    "coordinates": [
-                        -123.115406053889,
+                    "coordinates": [-123.115406053889,
                         49.248990875309
                     ]
                 },
@@ -121,8 +116,7 @@ function writeWebcamData() {
                 "url": "https://trafficcams.vancouver.ca/mainTerminal.htm",
                 "geom": {
                     "type": "Point",
-                    "coordinates": [
-                        -123.100028035364,
+                    "coordinates": [-123.100028035364,
                         49.2727762979223
                     ]
                 },
@@ -134,11 +128,24 @@ function writeWebcamData() {
         }
     ];
 
-    webcams.forEach(function (cam) { //cycle thru json objects in array
+    webcams.forEach(function(cam) { //cycle thru json objects in array
         console.log(cam); //just to check it out
         db.collection("webcams").add(cam) //add this new document
-            .then(function (doc) { //success 
+            .then(function(doc) { //success 
                 console.log("wrote to webcams collection " + doc.id);
             })
     })
 }
+
+function shareButton() {
+    alert("This is an alert");
+}
+
+function main() {
+    $(".bi bi-share-fill").click(shareButton);
+}
+
+// called on page startup and waits for function to be implemented
+$(document).ready(main);
+
+// in js functions are from bottom --> top
