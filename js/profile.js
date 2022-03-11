@@ -1,5 +1,7 @@
 var currentUser          //put this right after you start script tag before writing any functions.
 
+$('#personalInfoInput').hide();
+
 function populateInfo() {
     firebase.auth().onAuthStateChanged(user => {
 
@@ -27,7 +29,7 @@ function populateInfo() {
             }
 
             if (userLanguage != null) {
-                document.getElementById("userLanguage").value = userLanguage;
+                document.getElementById("languageInput").value = userLanguage;
             }
 
             /* How to select the language into <select> ? */
@@ -39,12 +41,13 @@ function populateInfo() {
 //call the function to run it
 populateInfo();
 
-function editUserInfo(){
+function editUserInfo() {
+    $('#personalInfoInput').show();
     //Make the form fields in profile.html editable
     document.getElementById('personalInfoInput').disabled = false;
 };
 
-function saveUserInfo(){
+function saveUserInfo() {
 
     //Save data from user
 
@@ -53,22 +56,27 @@ function saveUserInfo(){
     userCountry = document.getElementById('countryInput').value;
     userLanguage = document.getElementById('languageInput').value;
 
-    firebase.aut().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(user => {
 
-        //go to the correct user document by referencing to the user uid
-        currentUser = db.collection("users").doc(user.uid)
+        //Check if user has signed in:
+        // if (user) {
+            //go to the correct user document by referencing to the user uid
+            currentUser = db.collection("users").doc(user.uid)
 
-        // write/update the database
-        currentUser.update({
-            name: userName,
-            email: userEmail,
-            country: userCountry,
-            language: userLanguage
+            // write/update the database
+            currentUser.update({
+                name: userName,
+                email: userEmail,
+                country: userCountry,
+                language: userLanguage
+            })
+
+                .then(() => {
+                    alert("Your info is successfully saved!");
+                    document.getElementById('personalInfoInput').disabled = true;
+                });
         })
+    // });
 
-        .then(() => {
-            alert("Your info is successfully saved!")
-            document.getElementById('personalInfoInput').disabled=true;
-        });
-    });
+    $('#personalInfoInput').hide();
 }
