@@ -11,12 +11,20 @@ a {
     color: inherit;
 }
 
+body {
+    display: grid;
+    grid-template-rows: [navigation] 72px 1fr [footer] 128px;
+    height: 100vh;
+}
+
 .navbar {
     display: grid;
     grid-template-columns: max-content 1fr max-content;
     box-sizing: border-box;
     color: white;
     background-color: #1c1c1c;
+
+    grid-row: navigation / span 1;
 }
 
 @media screen and (max-width: 768px) {
@@ -97,6 +105,8 @@ a {
     width: 100%;
     background-color: #1c1c1c;
     color: white;
+
+    grid-row: footer / span 1;
 }
 
 .footer__category {
