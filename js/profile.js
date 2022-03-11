@@ -15,10 +15,23 @@ function populateInfo() {
             var userCountry = userDoc.data().country;
             var userLanguage = userDoc.data().language;
 
+            document.getElementById("displayName").value = userName;
+            document.getElementById("displayCountry").value = userCountry;
+            document.getElementById("displayLanguage").value = userLanguage;
+
+            var injectName = document.querySelector("#displayName")
+            var injectCountry = document.querySelector('#displayCountry')
+            var injectLanguage = document.querySelector('#displayLanguage')
+
+            injectName.innerHTML = userName;
+            injectCountry.innerHTML = userCountry;
+            injectLanguage.innerHTML = userLanguage;
+
+
             //if the data fields are not empty, then write them in to the form.
             if (userName != null) {
                 document.getElementById("nameInput").value = userName;
-                document.getElementById("displayName").value = userName;
+                
             }
 
             if (userEmail != null) {
@@ -27,7 +40,7 @@ function populateInfo() {
 
             if (userCountry != null) {
                 document.getElementById("countryInput").value = userCountry;
-                docuemnt
+                
             }
 
             if (userLanguage != null) {
@@ -44,7 +57,7 @@ function populateInfo() {
 populateInfo();
 
 function editUserInfo() {
-    $('#personalInfoInput').show();
+    $('#personalInfoInput').toggle();
     //Make the form fields in profile.html editable
     document.getElementById('personalInfoInput').disabled = false;
 };

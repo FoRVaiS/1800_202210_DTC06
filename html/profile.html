@@ -39,9 +39,9 @@
             <div class="card p-4">
                 <div class=" image d-flex flex-column justify-content-center align-items-center">
                     <img id="profilePicture" src="../images/placeholder.png" width="200px">
-                    <span class="name mt-3" id='displayName'>Rhys Mahannah</span>
-                    <span class="profile-content" id="displayCountry">Canada</span>
-                    <span class="profile-content" id="displayLanguage">English, French</span>
+                    <span class="name mt-3" id='displayName'></span>
+                    <span class="profile-content" id="displayCountry"></span>
+                    <span class="profile-content" id="displayLanguage"></span>
                     <!-- <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span></span> </div> -->
                     <div class="text mt-3 ">
                         <span>Eleanor Pena is a creator of minimalistic x bold graphics and digital
@@ -82,9 +82,9 @@
                     </fieldset>
                 </form>
                 <div class="d-flex justify-content-center mt-5">
-                    <button onclick=editUserInfo() type="button" class="btn btn-dark">Edit Profile</button>
+                    <button id='editButton' onclick=editUserInfo() type="button" class="btn btn-dark">Edit Profile</button>
                     <span style="width: 15px"></span>
-                    <button onclick=saveUserInfo() type="button" class="btn btn-secondary">Save</button>
+                    <button id="saveButton" onclick=saveUserInfo() type="button" class="btn btn-secondary">Save</button>
                 </div>
             </div>
 
