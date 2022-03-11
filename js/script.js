@@ -155,7 +155,6 @@ function populateCardsDynamically() {
                 // testHikeCard.querySelector('img').src = `./images/${hikeID}.jpg`;
                 hikeCardGroup.appendChild(testHikeCard);
             })
-
         })
 }
 
@@ -163,14 +162,6 @@ populateCardsDynamically();
 
 function setHikeData(id) {
     localStorage.setItem('hikeID', id);
-}
-
-function shareButton() {
-    alert("This is an alert");
-}
-
-function main() {
-    $(".bi bi-share-fill").click(shareButton);
 }
 
 // called on page startup and waits for function to be implemented
