@@ -1,106 +1,137 @@
 /* Contains styles used throughout the entire website */
-*, *::before, *::after {
-  box-sizing: border-box;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 .navbar {
-  display: grid;
-  grid-template-columns: max-content 1fr max-content;
-  box-sizing: border-box;
-  color: white;
-  background-color: #1c1c1c;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    box-sizing: border-box;
+    color: white;
+    background-color: #1c1c1c;
 }
+
 @media screen and (max-width: 768px) {
-  .navbar {
-    grid-template-areas: "navbar__hamburger navbar__title navbar__profile-picture";
-  }
-  .navbar__hamburger {
-    padding-inline: 16px;
-  }
-  .navbar__items, .navbar__item {
-    display: none;
-  }
+    .navbar {
+        grid-template-areas: "navbar__hamburger navbar__title navbar__profile-picture";
+    }
+    .navbar__hamburger {
+        padding-inline: 16px;
+    }
+    .navbar__items,
+    .navbar__item {
+        display: none;
+    }
 }
+
 @media screen and (min-width: 768px) {
-  .navbar {
-    grid-template-areas: "navbar__title navbar__items navbar__profile-picture";
-  }
-  .navbar__hamburger, .navbar__hamburger-icon {
-    display: none;
-  }
-  .navbar__title {
-    padding-inline: 16px;
-  }
+    .navbar {
+        grid-template-areas: "navbar__title navbar__items navbar__profile-picture";
+    }
+    .navbar__hamburger,
+    .navbar__hamburger-icon {
+        display: none;
+    }
+    .navbar__title {
+        padding-inline: 16px;
+    }
 }
+
 .navbar__hamburger {
-  display: inline-flex;
-  grid-area: navbar__hamburger;
+    display: inline-flex;
+    grid-area: navbar__hamburger;
 }
-.navbar__hamburger, .navbar__hamburger-icon {
-  align-self: center;
+
+.navbar__hamburger,
+.navbar__hamburger-icon {
+    align-self: center;
 }
+
 .navbar__title {
-  grid-area: navbar__title;
-  justify-self: center;
+    grid-area: navbar__title;
+    justify-self: center;
 }
+
 .navbar__items {
-  display: flex;
-  grid-area: navbar__items;
-  align-items: center;
+    display: flex;
+    grid-area: navbar__items;
+    align-items: center;
 }
+
 .navbar__item {
-  padding: 16px;
+    padding: 16px;
 }
+
 .navbar__profile[data-signed-in] {
-  display: inline-flex;
+    display: inline-flex;
 }
+
 .navbar__profile {
-  display: none;
-  grid-area: navbar__profile-picture;
-  padding-inline: 16px;
+    display: none;
+    grid-area: navbar__profile-picture;
+    padding-inline: 16px;
 }
+
 .navbar__profile-icon {
-  border-radius: 50%;
+    border-radius: 50%;
 }
-.navbar__profile, .navbar__profile-icon {
-  align-self: center;
+
+.navbar__profile,
+.navbar__profile-icon {
+    align-self: center;
 }
 
 .footer {
-  display: grid;
-  grid-template-columns: 1fr repeat(3, minmax(max-content, 175px)) 1fr;
-  grid-template-areas: "_ footer__category--support footer__category--discover footer__category--about __";
-  grid-gap: 16px;
-  width: 100%;
-  background-color: #1c1c1c;
-  color: white;
+    display: grid;
+    grid-template-columns: 1fr repeat(3, minmax(max-content, 175px)) 1fr;
+    grid-template-areas: "_ footer__category--support footer__category--discover footer__category--about __";
+    grid-gap: 16px;
+    width: 100%;
+    background-color: #1c1c1c;
+    color: white;
 }
+
 .footer__category {
-  display: flex;
-  padding: 16px 0;
-  justify-content: center;
+    display: flex;
+    padding: 16px 0;
+    justify-content: center;
 }
+
 .footer__category-wrapper {
-  display: inline-flex;
-  flex-direction: column;
+    display: inline-flex;
+    flex-direction: column;
 }
+
 .footer__category[aria-label=support i] {
-  grid-area: footer__category--support;
+    grid-area: footer__category--support;
 }
+
 .footer__category[aria-label=discover i] {
-  grid-area: footer__category--discover;
+    grid-area: footer__category--discover;
 }
+
 .footer__category[aria-label=about i] {
-  grid-area: footer__category--about;
+    grid-area: footer__category--about;
 }
+
 .footer__header {
-  margin-top: 0;
+    margin-top: 0;
 }
+
 .footer__item {
-  color: inherit;
+    color: inherit;
+}
+
+#suggestion-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
 }
