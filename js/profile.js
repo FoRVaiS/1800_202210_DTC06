@@ -9,24 +9,25 @@ function populateInfo() {
         currentUser = db.collection("users").doc(user.uid)
         //get the document for current user.
         currentUser.get().then(userDoc => {
+
             //get the data fields of the user
             var userName = userDoc.data().name;
             var userEmail = userDoc.data().email;
             var userCountry = userDoc.data().country;
             var userLanguage = userDoc.data().language;
+            var userBio = userDoc.data().bio;
 
-            document.getElementById("displayName").value = userName;
-            document.getElementById("displayCountry").value = userCountry;
-            document.getElementById("displayLanguage").value = userLanguage;
-
+            // select the elements that we want to inject our data into
             var injectName = document.querySelector("#displayName")
             var injectCountry = document.querySelector('#displayCountry')
             var injectLanguage = document.querySelector('#displayLanguage')
+            var injectBio = document.querySelector('#displayBio');
 
+            // inject data into placeholders
             injectName.innerHTML = userName;
             injectCountry.innerHTML = userCountry;
             injectLanguage.innerHTML = userLanguage;
-
+            injectBio.innerHTML = userBio;
 
             //if the data fields are not empty, then write them in to the form.
             if (userName != null) {
@@ -45,6 +46,10 @@ function populateInfo() {
 
             if (userLanguage != null) {
                 document.getElementById("languageInput").value = userLanguage;
+            }
+
+            if (userBio != null) {
+                document.getElementById('bioInput').value = userBio;
             }
 
             /* How to select the language into <select> ? */
@@ -70,6 +75,7 @@ function saveUserInfo() {
     userEmail = document.getElementById('emailInput').value;
     userCountry = document.getElementById('countryInput').value;
     userLanguage = document.getElementById('languageInput').value;
+    userBio = document.getElementById('bioInput').value;
 
     firebase.auth().onAuthStateChanged(user => {
 
@@ -83,7 +89,8 @@ function saveUserInfo() {
                 name: userName,
                 email: userEmail,
                 country: userCountry,
-                language: userLanguage
+                language: userLanguage,
+                bio: userBio
             })
 
                 .then(() => {
