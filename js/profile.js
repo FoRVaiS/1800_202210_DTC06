@@ -18,6 +18,7 @@ function populateInfo() {
             //if the data fields are not empty, then write them in to the form.
             if (userName != null) {
                 document.getElementById("nameInput").value = userName;
+                document.getElementById("displayName").value = userName;
             }
 
             if (userEmail != null) {
@@ -26,6 +27,7 @@ function populateInfo() {
 
             if (userCountry != null) {
                 document.getElementById("countryInput").value = userCountry;
+                docuemnt
             }
 
             if (userLanguage != null) {
