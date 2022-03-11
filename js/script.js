@@ -1,8 +1,3 @@
-function emulateSignIn(user = "Test User") {
-    $('#username').text(user);
-    $('.navbar__profile').attr("data-signed-in", true);
-}
-
 /** Query the database to fetch the user document */
 function fetchUserDoc(uid) {
     return db.collection("users").doc(uid).get();
