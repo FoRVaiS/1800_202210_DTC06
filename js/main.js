@@ -20,7 +20,7 @@ function insertName() {
                 // get the user name
                 var user_Name = userDoc.data().name;
                 console.log(user_Name);
-                $("#party_member").text(user_Name); //jquery
+                $("#party__member-name").text(user_Name); //jquery
                 // document.getElementById("party_member").innetText = user_Name;
             })
         }
