@@ -8,11 +8,12 @@ function populateCardsDynamically() {
                 var hikeName = doc.data().name; //gets the name field
                 var hikeID = doc.data().id; //gets the unique ID field
                 var description = doc.data().description; //gets the length field
+                var image = doc.data().image;
                 let testHikeCard = hikeCardTemplate.content.cloneNode(true);
                 testHikeCard.querySelector('.card-title').innerHTML = hikeName;
                 testHikeCard.querySelector('.card-length').innerHTML = description;
                 testHikeCard.querySelector('a').onclick = () => setHikeData(hikeID);
-                // testHikeCard.querySelector('img').src = `./images/${hikeID}.jpg`;
+                testHikeCard.querySelector('img').src = image;
                 hikeCardGroup.appendChild(testHikeCard);
             })
         })
