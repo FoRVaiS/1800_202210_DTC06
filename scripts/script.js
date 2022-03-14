@@ -25,6 +25,9 @@ async function handleUserSession(user) {
 }
 
 (() => {
+    $('nav.navbar').load('../_partials/header.html');
+    $('footer.footer').load('../_partials/footer.html');
+
     const auth = firebase.auth();
 
     auth.onAuthStateChanged(user => {
