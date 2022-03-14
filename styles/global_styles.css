@@ -139,9 +139,3 @@ body {
 .footer__item {
     color: inherit;
 }
-
-#suggestion-cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-}
