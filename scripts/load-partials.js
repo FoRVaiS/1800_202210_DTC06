@@ -1,4 +1,4 @@
 (() => {
-  $('nav.navbar').load('../html/partials/header.html');
-  $('footer.footer').load('../html/partials/footer.html');
+  $('nav.navbar').load('../_partials/header.html');
+  $('footer.footer').load('../_partials/footer.html');
 })();
