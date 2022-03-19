@@ -9,10 +9,13 @@
     <script src="../../scripts/vendors.js"></script>
     <link rel="stylesheet" href="../../styles/vendors.css">
 
+
     <!-- --- --- --- --- --- --- --- --- --- --- -->
     <!-- --- --- --- custom stylesheet ---  --- --- -->
     <!-- --- --- --- --- --- --- --- --- --- --- -->
     <link rel="stylesheet" href="../../styles/global.css">
+
+
     <style>
         #imageBanner {
             background-image: url("../../images/pho_img.jpeg");
@@ -51,6 +54,14 @@
             margin: 5px 10px;
             width: 15px;
             height: 15px;
+        }
+
+        button:hover svg.fillPink {
+            fill:#f6adc6;
+        }
+
+        button:hover svg.fillCyan {
+            fill: #a4f4f9;
         }
 
         @media screen and (max-width: 768px) {
@@ -152,8 +163,8 @@
             <ul class="list-group  mx-0" style="width:100%">
                 <li class="list-group-item"><img class="buttonLeft" src="../../icon/location-geo-fill.svg"
                         alt="location-icon"><span id="locationInfo">location</span></li>
-                <li class="list-group-item"><img class="buttonLeft" src="../../icon/clock-fill.svg" alt="clock-icon"><span
-                        id="hoursInfo">operation hours</span></li>
+                <li class="list-group-item"><img class="buttonLeft" src="../../icon/clock-fill.svg"
+                        alt="clock-icon"><span id="hoursInfo">operation hours</span></li>
                 <li class="list-group-item"><img class="buttonLeft" src="../../icon/book-fill.svg" alt="menu-icon"><span
                         id="menuInfo">menu</span></li>
                 <li class="list-group-item"><img class="buttonLeft" src="../../icon/telephone-fill.svg"
@@ -162,11 +173,22 @@
         </div>
 
         <div class="container-fluid bg-dark pt-3 pb-3 text-center">
-            <button id="saveIcon" class="btn btn-light btn-outline-dark align-">
-                <i class="bi bi-save2-fill"></i>Save
+            <button id="saveIcon" class="btn btn-light btn-outline-dark">
+                <i>
+                    <!-- <img src="../../icon/heart-fill.svg" class="pinkHeart"> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        class="bi bi-heart-fill fillPink" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                    </svg>
+                </i>Save
             </button>
             <button id="shareIcon" class="btn btn-light btn-outline-dark">
-                <i class="bi bi-share-fill"></i>Share
+                <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        class="bi bi-share-fill fillCyan" viewBox="0 0 16 16">
+                        <path
+                            d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
+                    </svg></i>Share
             </button>
         </div>
     </div>
@@ -175,7 +197,7 @@
     <footer class="footer"></footer>
 
     <!-- Link to scripts of your own -->
-    <script src="../../scripts/firebaseAPI_DTC06.js"></script>
+    <script src="../../js/firebaseAPI_DTC06.js"></script>
     <script src="../../scripts/global.js"></script>
     <script src="./page_info_template.js"></script>
 
