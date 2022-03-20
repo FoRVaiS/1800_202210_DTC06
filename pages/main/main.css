@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .party__member {
   display: grid;
   grid-template-columns: 50px 1fr;
@@ -22,12 +26,13 @@
 }
 
 .findGroupBtn {
-  margin: 20% auto;
+  margin: 20% 0;
 }
 
 .findGroupBtn button{
   padding: 1.6rem;
-  font-size: 30px;
+  font-size: x-large;
   font-weight: 550;
   border-radius: 25px;
+  width: 80%;
 }
