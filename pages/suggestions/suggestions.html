@@ -14,8 +14,14 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="../../styles/global.css">
-    <link rel="stylesheet" href="./suggestions-restaurants.css">
 
+    <style>
+        #suggestion-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,7 +36,7 @@
 
     <div class="d-flex flex-column justify-content-center">
 
-        <template id="sightseeCardTemplate">
+        <template id="suggestionsCardTemplate">
             <div class="card w-25">
                 <img class="card-img-top" src="">
                 <div class="card-body">
@@ -46,10 +52,10 @@
         </template>
 
         <div class="container">
-            <h1>Sight See</h1>
+            <h1>Suggestions</h1>
             <!-- Here is container for cards  -->
             <div class="container">
-                <div id="sightseeCardGroup" class="row row-cols-auto">
+                <div id="suggestionsCardGroup" class="row row-cols-auto">
                 </div>
             </div>
         </div>
@@ -63,7 +69,7 @@
     <!-- Link to scripts of your own -->
     <script src="../../scripts/firebaseAPI_DTC06.js"></script>
     <script src="../../scripts/global.js"></script>
-    <script src="./suggestions-sightsee.js"></script>
+    <script src="./suggestions.js"></script>
 
 </body>
 
