@@ -15,8 +15,8 @@
             if (!user) return console.warn('User is not signed in!');
 
             db.collection('users').doc(user.uid).update({
-                type: personType,
-                activity_type: activityType,
+                userType: personType,
+                type: activityType,
                 bio
             }).then(() => {
                 window.location.href = "../main/main.html"
