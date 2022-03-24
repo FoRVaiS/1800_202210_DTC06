@@ -1,40 +1,40 @@
 // Initialize the FirebaseUI Widget using Firebase.
 (() => {
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
     const redirectUrl = '../main/main.html';
 
-    var uiConfig = {
+    const uiConfig = {
         callbacks: {
-            signInSuccessWithAuthResult: function(authResult) {
-                // User successfully signed in.
-                // Return type determines whether we continue the redirect automatically
-                // or whether we leave that to developer to handle.
-                var user = authResult.user; // get the user object info
-                const userDoc = db.collection('users').doc(user.uid);
+            signInSuccessWithAuthResult: async function(authResult) {
+                try {
+                    // User successfully signed in.
+                    // Return type determines whether we continue the redirect automatically
+                    // or whether we leave that to developer to handle.
+                    const user = authResult.user; // get the user object info
+                    const userDoc = db.collection('users').doc(user.uid);
 
-                if (authResult.additionalUserInfo.isNewUser) {
-                    userDoc.set({
-                        name: user.displayName,
-                        email: user.email,
-                    })
-                        .then(() => window.location.assign('../user_selection/user_selection.html?redirect='+redirectUrl))
-                        .catch(console.error);
-                } else {
-                    userDoc.get()
-                        .then(snapshot => {
-                            const data = snapshot.data();
+                    if (authResult.additionalUserInfo.isNewUser) {
+                        await userDoc.set({
+                            name: user.displayName,
+                            email: user.email,
+                        })
+                        window.location.assign('../user_selection/user_selection.html?redirect='+redirectUrl);
+                    } else {
+                        const snapshot = await userDoc.get();
+                        const data = snapshot.data();
 
-                            if (!data.type || !data.userType) window.location.assign('../user_selection/user_selection.html?redirect='+redirectUrl);
+                        if (!data.type || !data.userType) window.location.assign('../user_selection/user_selection.html?redirect='+redirectUrl);
 
-                            if (data.type.length > 0 && data.userType.length > 0) {
-                                return true;
-                            } else {
-                                window.location.assign('../user_selection/user_selection.html?redirect='+redirectUrl);
-                            }
-                        });
+                        if (data.type.length > 0 && data.userType.length > 0) {
+                            return true;
+                        } else {
+                            window.location.assign('../user_selection/user_selection.html?redirect='+redirectUrl);
+                        }
+                    }
+                } catch (e) {
+                    console.error(e);
                 }
-
             },
             uiShown: function() {
                 // The widget is rendered.
