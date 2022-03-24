@@ -55,7 +55,7 @@ function populateCardsDynamically(type) {
     db.collection(type).get()
         .then(allSuggestion => {
             allSuggestion.forEach(doc => {
-                var suggestionName = doc.data().group_name;
+                var suggestionName = doc.data().name;
                 // var suggestionID = doc.data().id;
                 // var suggestionDescription = doc.data().description;
                 // var suggestionImage = doc.data().image;
