@@ -29,25 +29,32 @@
         </div>
 
         <h1 class="text-center my-3">Welcome back, <span id="username">...</span>!</h1>
-        <div class="party">
-            <a class="party__member" href="../profile/profile.html">
-                <div class="party__profile-wrapper">
-                    <img class="party__profile-picture" src="https://via.placeholder.com/50" />
+
+        <div class="d-flex flex-column justify-content-center">
+            <template id="suggestionsCardTemplate">
+                <div class="card w-25">
+                    <img class="card-img-top" src="">
+                    <div class="card-body">
+                        <h5 class="card-title">placeholder</h5>
+                        <br>
+                        <p class="card-length">placeholder</p>
+                        <br>
+                        <p id=""></p>
+                        <p class="card-text"></p>
+                        <a href="../page_info_template/page_info_template.html" class="btn btn-primary">Read more</a>
+                    </div>
                 </div>
-                <p class="party__member-name">FirstName LastName</p>
-            </a>
-            <a class="party__member" href="../profile/profile.html">
-                <div class="party__profile-wrapper">
-                    <img class="party__profile-picture" src="https://via.placeholder.com/50" />
+            </template>
+
+            <div class="container">
+                <h1>Groups</h1>
+                <!-- Here is container for cards  -->
+                <div class="container">
+                    <div id="suggestionsCardGroup" class="row row-cols-auto">
+                    </div>
                 </div>
-                <p class="party__member-name">FirstName LastName</p>
-            </a>
-            <a class="party__member" href="../profile/profile.html">
-                <div class="party__profile-wrapper">
-                    <img class="party__profile-picture" src="https://via.placeholder.com/50" />
-                </div>
-                <p class="party__member-name">FirstName LastName</p>
-            </a>
+            </div>
+
         </div>
     </div>
 

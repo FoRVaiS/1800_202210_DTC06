@@ -3,16 +3,15 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("users").doc(user.uid).get().then(doc => {
             const data = doc.data();
-            console.log(data.type);
-            if (data.type == "Activities") {
+            if (data.type == "activities") {
                 populateCardsDynamically(data.type);
             }
 
-            if (data.type == "Restaurants") {
+            if (data.type == "restaurants") {
                 populateCardsDynamically(data.type);
             }
 
-            if (data.type == "Sightsee") {
+            if (data.type == "sightsee") {
                 populateCardsDynamically(data.type);
             }
         });

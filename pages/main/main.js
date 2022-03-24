@@ -34,16 +34,15 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("users").doc(user.uid).get().then(doc => {
             const data = doc.data();
-            console.log(data.type);
-            if (data.type == "Activities") {
+            if (data.type == "activities") {
                 populateCardsDynamically(data.type);
             }
 
-            if (data.type == "Restaurants") {
+            if (data.type == "restaurants") {
                 populateCardsDynamically(data.type);
             }
 
-            if (data.type == "Sightsee") {
+            if (data.type == "sightsee") {
                 populateCardsDynamically(data.type);
             }
         });
@@ -56,16 +55,16 @@ function populateCardsDynamically(type) {
     db.collection(type).get()
         .then(allSuggestion => {
             allSuggestion.forEach(doc => {
-                var suggestionName = doc.data().name;
-                var suggestionID = doc.data().id;
-                var suggestionDescription = doc.data().description;
-                var suggestionImage = doc.data().image;
+                var suggestionName = doc.data().group_name;
+                // var suggestionID = doc.data().id;
+                // var suggestionDescription = doc.data().description;
+                // var suggestionImage = doc.data().image;
 
                 let testSuggestionCard = suggestionsCardTemplate.content.cloneNode(true);
                 testSuggestionCard.querySelector(".card-title").innerHTML = suggestionName;
-                testSuggestionCard.querySelector(".card-length").innerHTML = suggestionDescription;
-                testSuggestionCard.querySelector("a").onclick = () => setSuggestionData(suggestionID);
-                testSuggestionCard.querySelector("img").src = suggestionImage;
+                // testSuggestionCard.querySelector(".card-length").innerHTML = suggestionDescription;
+                // testSuggestionCard.querySelector("a").onclick = () => setSuggestionData(suggestionID);
+                // testSuggestionCard.querySelector("img").src = suggestionImage;
 
                 suggestionsCardGroup.appendChild(testSuggestionCard);
             })
