@@ -1,4 +1,5 @@
 .DS_Store
 *.logs
 node_modules/
+.vscode/
 firebaseAPI_DTC06.js
