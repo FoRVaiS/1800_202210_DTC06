@@ -15,7 +15,8 @@ async function handleUserSession(user) {
     const isUserLoggedIn = !!user;
 
     if (isUserLoggedIn) {
-        if (!window.localStorage.getItem('username')) storeUserData(await fetchUserDoc(user.uid));
+        // if (!window.localStorage.getItem('username')) storeUserData(await fetchUserDoc(user.uid));
+        storeUserData(await fetchUserDoc(user.uid));
 
         const username = window.localStorage.getItem('username');
 
