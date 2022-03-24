@@ -5,6 +5,8 @@
     const formRef = document.querySelector("form#user-settings");
     formRef.addEventListener('submit', processForm);
 
+    const params = Object.fromEntries(window.location.search.substring(1).split('&').map(param => param.split('=')));
+
     function processForm(e) {
         e.preventDefault();
         const formData = Object.fromEntries($(formRef).serializeArray().map(Object.values));
@@ -19,7 +21,7 @@
                 type: activityType,
                 bio
             }).then(() => {
-                window.location.href = "../main/main.html"
+                window.location.href = params.redirect;
             });
         });
 
