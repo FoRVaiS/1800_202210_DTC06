@@ -29,17 +29,9 @@ function insertName() {
 }
 // insertName();
 
-(() => {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            db.collection("users").doc(user.uid).get()
-                .then(doc => {
-                    const { type } = doc.data();
-                    
-                    populateCardsDynamically(type);
-                });
-        }
-    });
+(async () => {
+    $("section[region='suggestions'").hide();
+    updateView();
 
     function populateCardsDynamically(type) {
         const suggestionsCardTemplate = document.querySelector("section[region='suggestions'] template#suggestions_card");
@@ -60,6 +52,94 @@ function insertName() {
                 })
             })
     }
+
+    async function doesGroupExist(groupId) {
+        const groupDoc = db.collection('groups').doc(groupId);
+        const snapshot = await groupDoc.get();
+
+        return !!snapshot.exists;
+    }
+
+    async function fetchCurrentUserGroup() {
+        const currentUser = await fetchFirestoreDoc('users', (await getCurrentUser()).uid);
+        const { groupId } = currentUser.data();
+
+        if (!groupId) return null;
+
+        if (doesGroupExist(groupId)) {
+            return db.collection('groups').doc(groupId);
+        }
+
+        console.error('Group does not exist');
+        return null;
+    }
+
+    async function fetchGroupsSnapshot(type) {
+        const snapshots = await db.collection('groups').where('type', '==', type).get();
+
+        return snapshots.docs;
+    }
+
+    function filterOpenGroups(groupDocs) {
+        return groupDocs.filter(doc => doc.data().members.length <= 5);
+    }
+
+    async function addUserToGroup(groupDoc) {
+        const userId = (await getCurrentUser()).uid;
+
+        db.collection('groups').doc(groupDoc.id).set({
+            members: firebase.firestore.FieldValue.arrayUnion(db.doc('/users/' + userId)),
+        }, {
+            merge: true,
+        });
+
+        db.collection('users').doc(userId).set({
+            groupId: groupDoc.id,
+        }, {
+            merge: true,
+        })
+    }
+
+    async function updateView() {
+        if (await fetchCurrentUserGroup()) {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    db.collection("users").doc(user.uid).get()
+                        .then(doc => {
+                            const { type } = doc.data();
+
+                            populateCardsDynamically(type);
+                        });
+                }
+            });
+
+            $("section[region='suggestions']").show();
+            $('.findGroupBtn').remove();
+        }
+    }
+
+    const findGroupBtn = document.querySelector('#findGroup');
+
+    findGroupBtn.onclick = async () => {
+        findGroupBtn.setAttribute('disabled', true);
+        findGroupBtn.classList.remove('btn-primary');
+        findGroupBtn.classList.add('btn-secondary');
+
+        const { type } = (await fetchFirestoreDoc('users', (await getCurrentUser()).uid)).data();
+
+        const groups = filterOpenGroups(await fetchGroupsSnapshot(type));
+
+        const isUserInGroup = await fetchCurrentUserGroup();
+
+        if (!isUserInGroup) {
+            addUserToGroup(groups[0]);
+        } else {
+            console.warn('You\'re already in a group.');
+        }
+
+        updateView();
+    }
+
 
     function setSuggestionData(id) {
         localStorage.setItem("suggestionID", id);

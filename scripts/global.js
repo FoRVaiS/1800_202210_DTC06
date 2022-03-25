@@ -10,6 +10,20 @@ function storeUserData(doc) {
     window.localStorage.setItem('username', name);
 }
 
+function getCurrentUser() {
+    return new Promise((resolve, reject) => firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            resolve(user);
+        } else {
+            reject();
+        }
+    }));
+}
+
+async function fetchFirestoreDoc(collection, document) {
+    return db.collection(collection).doc(document).get();
+}
+
 /** When the user successfully logs in, execute any post-login tasks */
 async function handleUserSession(user) {
     const isUserLoggedIn = !!user;
