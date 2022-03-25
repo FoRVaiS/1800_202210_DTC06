@@ -118,12 +118,12 @@ function saveUserInfo() {
         if (!user) return null;
 
         const userDoc = await db.collection('users').doc(user.uid).get();
+        const { type, favourites } = userDoc.data();
 
-        const restaurantDocPromises = userDoc.data()
-            .favourites.map(suggestionCode => db.collection("Restaurants").where('id', '==', suggestionCode.toUpperCase()).get());
+        const docsPromises = favourites.map(code => db.collection(type).where('id', '==', code.toUpperCase()).get());
 
-        const restaurantDocs = (await Promise.all(restaurantDocPromises)).map(doc => doc.docs[0].data());
+        const docs = (await Promise.all(docsPromises)).map(({ docs }) => docs[0].data());
 
-        restaurantDocs.forEach(createCard);
+        docs.forEach(createCard);
     });
 })();
