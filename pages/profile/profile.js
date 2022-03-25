@@ -104,12 +104,12 @@ function saveUserInfo() {
 }
 
 (() => {
-    function createCard({ name: title, description, address }, index = 0) {
+    function createCard({ name: title, description, address, image }, index = 0) {
         const testHikeCard = document.querySelector('#profile__fav-card').content.cloneNode(true);
         testHikeCard.querySelector('.fav-card__title').innerText = title;
         testHikeCard.querySelector('.fav-card__description').innerText = description;
         testHikeCard.querySelector('.fav-card__location').innerText = address;
-        testHikeCard.querySelector('img').src = `https://source.unsplash.com/random/${index}?food`
+        testHikeCard.querySelector('img').src = image;
         
         document.querySelector('#fav-card__group').appendChild(testHikeCard);
     }
