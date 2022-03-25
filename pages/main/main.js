@@ -105,10 +105,22 @@ function insertName() {
             firebase.auth().onAuthStateChanged(user => {
                 if (user) {
                     db.collection("users").doc(user.uid).get()
-                        .then(doc => {
-                            const { type } = doc.data();
+                        .then(async doc => {
+                            const { type, groupId } = doc.data();
 
                             populateCardsDynamically(type);
+
+                            const groupSnapshot = await db.collection('groups').doc(groupId).get();
+                            const { members } = groupSnapshot.data();
+
+                            const memberDocuments = await Promise.all(members.map(member => member.get()));
+                            memberDocuments.forEach(memberDocument => {
+                                const { name } = memberDocument.data();
+                                const memberRow = document.querySelector('#t-member').content.cloneNode(true);
+                                memberRow.querySelector('.member__name').textContent = name;
+
+                                document.querySelector("section[region='group'").append(memberRow);
+                            });
                         });
                 }
             });
