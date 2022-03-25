@@ -8,7 +8,7 @@ function read_display_User() {
             document.getElementById("username").innerHTML = groupsDoc.data().user;
         })
 }
-read_display_User();
+// read_display_User();
 
 function insertName() {
     // to check if the user is logged in:
@@ -27,50 +27,41 @@ function insertName() {
 
     })
 }
-insertName();
+// insertName();
 
-var currentUser;
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        currentUser = db.collection("users").doc(user.uid).get().then(doc => {
-            const data = doc.data();
-            if (data.type == "activities") {
-                populateCardsDynamically(data.type);
-            }
+(() => {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            db.collection("users").doc(user.uid).get()
+                .then(doc => {
+                    const { type } = doc.data();
+                    
+                    populateCardsDynamically(type);
+                });
+        }
+    });
 
-            if (data.type == "restaurants") {
-                populateCardsDynamically(data.type);
-            }
+    function populateCardsDynamically(type) {
+        const suggestionsCardTemplate = document.querySelector("section[region='suggestions'] template#suggestions_card");
+        const suggestionsCardGroup = document.querySelector("section[region='suggestions'] .u-card-group");
 
-            if (data.type == "sightsee") {
-                populateCardsDynamically(data.type);
-            }
-        });
-    }
-});
+        db.collection(type).get()
+            .then(allSuggestion => {
+                allSuggestion.forEach(doc => {
+                    const { name, id, description, image } = doc.data();
 
-function populateCardsDynamically(type) {
-    let suggestionsCardTemplate = document.getElementById("suggestionsCardTemplate");
-    let suggestionsCardGroup = document.getElementById("suggestionsCardGroup");
-    db.collection(type).get()
-        .then(allSuggestion => {
-            allSuggestion.forEach(doc => {
-                var suggestionName = doc.data().name;
-                // var suggestionID = doc.data().id;
-                // var suggestionDescription = doc.data().description;
-                // var suggestionImage = doc.data().image;
+                    const suggestionCard = suggestionsCardTemplate.content.cloneNode(true);
+                    suggestionCard.querySelector(".card-title").innerHTML = name;
+                    suggestionCard.querySelector(".card-length").innerHTML = description;
+                    suggestionCard.querySelector("a").onclick = () => setSuggestionData(id);
+                    suggestionCard.querySelector("img").src = image;
 
-                let testSuggestionCard = suggestionsCardTemplate.content.cloneNode(true);
-                testSuggestionCard.querySelector(".card-title").innerHTML = suggestionName;
-                // testSuggestionCard.querySelector(".card-length").innerHTML = suggestionDescription;
-                // testSuggestionCard.querySelector("a").onclick = () => setSuggestionData(suggestionID);
-                // testSuggestionCard.querySelector("img").src = suggestionImage;
-
-                suggestionsCardGroup.appendChild(testSuggestionCard);
+                    suggestionsCardGroup.appendChild(suggestionCard);
+                })
             })
-        })
-}
+    }
 
-function setSuggestionData(id) {
-    localStorage.setItem("suggestionID", id);
-}
+    function setSuggestionData(id) {
+        localStorage.setItem("suggestionID", id);
+    }
+})();

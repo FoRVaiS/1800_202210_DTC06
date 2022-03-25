@@ -22,39 +22,35 @@
 
     <!-- navbar -->
     <nav class="navbar"></nav>
-    <div class="container">
-
-        <div class="text-center findGroupBtn">
-            <button type="button" class="btn btn-secondary" id="findGroup">Find your group now!</button>
-        </div>
-
-        <h1 class="text-center my-3">Welcome back, <span id="username">...</span>!</h1>
-
-        <div class="d-flex flex-column justify-content-center">
-            <template id="suggestionsCardTemplate">
-                <div class="card w-25">
-                    <img class="card-img-top" src="">
-                    <div class="card-body">
-                        <h5 class="card-title">placeholder</h5>
-                        <br>
-                        <p class="card-length">placeholder</p>
-                        <br>
-                        <p id=""></p>
-                        <p class="card-text"></p>
-                        <a href="../page_info_template/page_info_template.html" class="btn btn-primary">Read more</a>
-                    </div>
+    <div class="container-lg mb-5">
+        <div class="row">
+            <section region="group" class="col-xs-12 my-3">
+                <h1 class="text-center mb-5">Welcome back, <span id="username">...</span>!</h1>
+                <div class="text-center my-5 findGroupBtn">
+                    <button type="button" class="btn btn-primary " id="findGroup">Find your group now!</button>
                 </div>
-            </template>
+            </section>
 
-            <div class="container">
-                <h1>Groups</h1>
-                <!-- Here is container for cards  -->
-                <div class="container">
-                    <div id="suggestionsCardGroup" class="row row-cols-auto">
+            <section region="suggestions" class="col-xs-12">
+                <template id="suggestions_card">
+                    <div class="card col-lg-4 col-md-6 col-sm-12">
+                        <img class="card-img-top" src="">
+                        <div class="card-body">
+                            <h5 class="card-title">placeholder</h5>
+                            <br>
+                            <p class="card-length">placeholder</p>
+                            <br>
+                            <p id=""></p>
+                            <p class="card-text"></p>
+                            <a href="../page_info_template/page_info_template.html" class="btn btn-primary">Read
+                                more</a>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </template>
 
+                <h1 class="u-section-header mb-3 gap-1">Suggestions</h1>
+                <div class="row u-card-group"></div>
+            </section>
         </div>
     </div>
 
