@@ -32,7 +32,7 @@ function populateInfo() {
             //if the data fields are not empty, then write them in to the form.
             if (userName != null) {
                 document.getElementById("nameInput").value = userName;
-                
+
             }
 
             if (userEmail != null) {
@@ -41,7 +41,7 @@ function populateInfo() {
 
             if (userCountry != null) {
                 document.getElementById("countryInput").value = userCountry;
-                
+
             }
 
             if (userLanguage != null) {
@@ -104,13 +104,14 @@ function saveUserInfo() {
 }
 
 (() => {
-    function createCard({ name: title, description, address, image }, index = 0) {
+    function createCard({ name: title, description, address, image, id }, index = 0) {
         const testHikeCard = document.querySelector('#profile__fav-card').content.cloneNode(true);
         testHikeCard.querySelector('.fav-card__title').innerText = title;
         testHikeCard.querySelector('.fav-card__description').innerText = description;
         testHikeCard.querySelector('.fav-card__location').innerText = address;
+        testHikeCard.querySelector(".card-btn").onclick = () => window.location.assign('../page_info_template/page_info_template.html?code=' + id.toUpperCase());
         testHikeCard.querySelector('img').src = image;
-        
+
         document.querySelector('#fav-card__group').appendChild(testHikeCard);
     }
 
