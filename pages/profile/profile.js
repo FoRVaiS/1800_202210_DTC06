@@ -14,19 +14,19 @@ function populateInfo() {
             var userName = userDoc.data().name;
             var userEmail = userDoc.data().email;
             var userCountry = userDoc.data().country;
-            var userLanguage = userDoc.data().language;
+            var type = userDoc.data().type;
             var userBio = userDoc.data().bio;
 
             // select the elements that we want to inject our data into
             var injectName = document.querySelector("#displayName")
             var injectCountry = document.querySelector('#displayCountry')
-            var injectLanguage = document.querySelector('#displayLanguage')
+            var injectType = document.querySelector('#in-group-type')
             var injectBio = document.querySelector('#displayBio');
 
             // inject data into placeholders
             injectName.innerHTML = userName;
             injectCountry.innerHTML = userCountry;
-            injectLanguage.innerHTML = userLanguage;
+            // injectType.innerHTML = type;
             injectBio.innerHTML = userBio;
 
             //if the data fields are not empty, then write them in to the form.
@@ -44,8 +44,9 @@ function populateInfo() {
 
             }
 
-            if (userLanguage != null) {
-                document.getElementById("languageInput").value = userLanguage;
+            if (type != null) {
+                console.log(`#in-group-type > option[value='${type}']`);
+                document.querySelector(`#in-group-type > option[value='${type}']`).setAttribute('selected', true);
             }
 
             if (userBio != null) {
@@ -74,7 +75,7 @@ function saveUserInfo() {
     userName = document.getElementById('nameInput').value;
     userEmail = document.getElementById('emailInput').value;
     userCountry = document.getElementById('countryInput').value;
-    userLanguage = document.getElementById('languageInput').value;
+    groupType = document.getElementById('in-group-type').value;
     userBio = document.getElementById('bioInput').value;
 
     firebase.auth().onAuthStateChanged(user => {
@@ -88,13 +89,11 @@ function saveUserInfo() {
             currentUser.update({
                 name: userName,
                 email: userEmail,
-                country: userCountry,
-                language: userLanguage,
+                type: groupType,
                 bio: userBio
             })
 
                 .then(() => {
-                    alert("Your info is successfully saved!");
                     document.getElementById('personalInfoInput').disabled = true;
                 });
         })
