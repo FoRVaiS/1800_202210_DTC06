@@ -1,6 +1,6 @@
 /** Query the database to fetch the user document */
 function fetchUserDoc(uid) {
-    return db.collection("users").doc(uid).get();
+    return db.collection('users').doc(uid).get();
 }
 
 /** Stores public user data in LocalStorage */

@@ -9,14 +9,14 @@
                     const { name, id, description, image } = doc.data();
 
                     const suggestionCard = suggestionsCardTemplate.content.cloneNode(true);
-                    suggestionCard.querySelector(".card-title").innerHTML = name;
-                    suggestionCard.querySelector(".card-length").innerHTML = description;
-                    suggestionCard.querySelector(".card-btn").onclick = () => window.location.assign('../page_info_template/page_info_template.html?code=' + id.toUpperCase());
-                    suggestionCard.querySelector("img").src = image;
+                    suggestionCard.querySelector('.card-title').innerHTML = name;
+                    suggestionCard.querySelector('.card-length').innerHTML = description;
+                    suggestionCard.querySelector('.card-btn').onclick = () => window.location.assign(`../page_info_template/page_info_template.html?code=${id.toUpperCase()}`);
+                    suggestionCard.querySelector('img').src = image;
 
                     suggestionsCardGroup.appendChild(suggestionCard);
-                })
-            })
+                });
+            });
     }
 
     firebase.auth().onAuthStateChanged(async user => {
