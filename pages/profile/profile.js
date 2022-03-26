@@ -42,8 +42,6 @@
     // call the function to run it
     populateInfo();
 
-
-    // eslint-disable-next-line no-unused-vars
     function editUserInfo() {
         $('#personalInfoInput').toggle();
 
@@ -51,7 +49,6 @@
         document.getElementById('personalInfoInput').disabled = false;
     }
 
-    // eslint-disable-next-line no-unused-vars
     function saveUserInfo() {
     // Save data from user
 
@@ -78,6 +75,9 @@
 
         $('#personalInfoInput').hide();
     }
+
+    document.querySelector('#editButton').onclick = editUserInfo;
+    document.querySelector('#saveButton').onclick = saveUserInfo;
 
     function createCard({ name: title, description, address, image, id }) {
         const testHikeCard = document.querySelector('#profile__fav-card').content.cloneNode(true);
