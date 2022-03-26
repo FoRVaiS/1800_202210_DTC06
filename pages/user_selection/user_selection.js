@@ -1,7 +1,4 @@
 (() => {
-    const validateMandatoryData = (form, onFailure) => {
-
-    }
     const formRef = document.querySelector("form#user-settings");
     formRef.addEventListener('submit', processForm);
 
@@ -11,7 +8,6 @@
         e.preventDefault();
         const formData = Object.fromEntries($(formRef).serializeArray().map(Object.values));
         const { activity_type: activityType, person_type: personType, bio } = formData;
-        // debugger;
 
         firebase.auth().onAuthStateChanged(user => {
             if (!user) return console.warn('User is not signed in!');
@@ -24,7 +20,6 @@
                 window.location.href = params.redirect;
             });
         });
-
 
         return false;
     }

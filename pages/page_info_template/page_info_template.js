@@ -46,7 +46,3 @@ async function populateCardsDynamically(type) {
 
     infoCardGroup.appendChild(testInfoCard);
 }
-
-function setSuggestionData(id) {
-    localStorage.setItem("infoCardID", id);
-}
