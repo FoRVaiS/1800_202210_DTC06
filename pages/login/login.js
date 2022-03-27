@@ -29,7 +29,7 @@
                                 return window.location.assign(`../user_selection/user_selection.html?redirect=${redirectUrl}`);
                             }
 
-                            return true;
+                            return window.location.assign(redirectUrl);
                         });
                     }
                 } catch (e) {
