@@ -13,7 +13,7 @@ window.comidas = window.comidas || {};
         },
     ) {
         const _collectionName = collectionName.trim();
-        const _documentName = opts.document.trim();
+        const _documentName = opts.document?.trim();
 
         if (!_collectionName) throw new TypeError('must provide a collectionName');
 
