@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> full page info template </title>
+
+    <script src="../../scripts/vendors.js"></script>
+    <link rel="stylesheet" href="../../styles/vendors.css">
+    <link rel="stylesheet" href="../../styles/global.css">
+</head>
+
+<body>
+    <!------------------------------>
+    <!----------HTML Layout--------->
+    <!------------------------------>
+
+    <!-- navbar -->
+    <nav class="navbar"></nav>
+
+    <div class="container py-3">
+        <h3>My Chat with <span id="friend">Friend</span></h3>
+        <!--The div element for the map -->
+        <!-- <input class="btn btn-success" value="Chat Samsantech" onclick="chat('samsantech')"> -->
+
+        <!-- <input id="username" type="text" placeholder="Enter name"><br/> -->
+        <div class="container">
+            <!-- <input id="text" type="text" placeholder="Enter name"><br /> -->
+
+            <input id="text" type="text" placeholder="Enter message"><br />
+            <button id="post"> Post </button> <br />
+            <button id="clear"> Clear </button> <br />
+            <button id="quit"> Quit </button> <br />
+            <div class="p-5 mb-4 bg-light rounded-3" id="results"></div>
+        </div>
+    </div>
+
+    <!-- template for one chat message item -->
+    <template id="card-template">
+        <div class="card"></div>
+        <div class="container msg">
+            <b class="card-name"> Name</b>
+            <span class="card-body"> some stuff </span>
+        </div>
+        </div>
+    </template>
+    <!-- end -->
+
+    <!-- footer -->
+    <footer class="footer"></footer>
+
+    <!-- Link to scripts of your own -->
+    <script src="../../scripts/firebaseAPI_DTC06.js"></script>
+    <script src="../../scripts/global.js"></script>
+    <script src="./chat.js"></script>
+</body>
+
+</html>
