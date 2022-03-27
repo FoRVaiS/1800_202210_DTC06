@@ -81,40 +81,17 @@ window.comidas = window.comidas || {};
     };
 })(window.comidas.exports = window.comidas.exports || {});
 
-(() => {
-/** Query the database to fetch the user document */
-    function fetchUserDoc(uid) {
-        return db.collection('users').doc(uid).get();
-    }
-
-    /** Stores public user data in LocalStorage */
-    function storeUserData(doc) {
-        const { name } = doc.data();
-
-        window.localStorage.setItem('username', name);
-    }
-
-    /** When the user successfully logs in, execute any post-login tasks */
-    async function handleUserSession(user) {
-        const isUserLoggedIn = !!user;
-
-        if (isUserLoggedIn) {
-        // if (!window.localStorage.getItem('username')) storeUserData(await fetchUserDoc(user.uid));
-            storeUserData(await fetchUserDoc(user.uid));
-
-            const username = window.localStorage.getItem('username');
-
-            $('#username').text(username);
-            $('.navbar__profile').attr('data-signed-in', true);
-        }
-    }
-
+(async () => {
     $('nav.navbar').load('../_partials/header.html');
     $('footer.footer').load('../_partials/footer.html');
 
-    const auth = firebase.auth();
+    const { fetchCurrentUserId } = window.comidas.exports;
 
-    auth.onAuthStateChanged(user => {
-        handleUserSession(user);
-    });
+    try {
+        await fetchCurrentUserId();
+
+        document.querySelector('.navbar__profile').setAttribute('data-signed-in', true);
+    } catch (e) {
+        console.error(e);
+    }
 })();
