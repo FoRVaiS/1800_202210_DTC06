@@ -1,13 +1,11 @@
 (() => {
+    const params = Object.fromEntries(window.location.search.substring(1).split('&').map(param => param.split('=')));
+
     async function populateCardsDynamically(type) {
-        const params = Object.fromEntries(window.location.search.substring(1).split('&').map(param => param.split('=')));
 
         const snapshot = await db.collection(type).where('id', '==', params.code).get();
 
         const [doc] = snapshot.docs;
-
-        const infoCardTemplate = document.getElementById('infoCardTemplate');
-        const infoCardGroup = document.getElementById('infoCardGroup');
 
         const infoCardImage = doc.data().image;
         const infoCardName = doc.data().name;
@@ -16,16 +14,12 @@
         const infoCardWebsite = doc.data().website;
         const infoCardPhone = doc.data().phone;
 
-        const testInfoCard = infoCardTemplate.content.cloneNode(true);
-
-        testInfoCard.querySelector('img').src = infoCardImage;
-        testInfoCard.querySelector('.card-title').innerHTML = infoCardName;
-        testInfoCard.querySelector('.card-address').innerHTML = infoCardAddress;
-        testInfoCard.querySelector('.card-hours').innerHTML = infoCardHours;
-        testInfoCard.querySelector('.card-website').innerHTML = infoCardWebsite;
-        testInfoCard.querySelector('.card-phone').innerHTML = infoCardPhone;
-
-        infoCardGroup.appendChild(testInfoCard);
+        document.querySelector('#picture').setAttribute("src", infoCardImage);
+        document.querySelector('.card-title').innerHTML = infoCardName;
+        document.querySelector('.card-address').innerHTML = infoCardAddress;
+        document.querySelector('.card-hours').innerHTML = infoCardHours;
+        document.querySelector('.card-website').innerHTML = infoCardWebsite;
+        document.querySelector('.card-phone').innerHTML = infoCardPhone;
     }
 
     firebase.auth().onAuthStateChanged(user => {
@@ -46,10 +40,11 @@
             });
         }
     });
-})();
 
-(() => {
     const saveBtnRef = document.querySelector('#saveIcon');
+
+    saveBtnRef.setAttribute('data-id', params.code);
+
     const suggestionCode = saveBtnRef.getAttribute('data-id');
 
     saveBtnRef.onclick = () => {
@@ -64,7 +59,6 @@
                     const result = await userDoc.update({
                         favourites: firebase.firestore.FieldValue.arrayUnion(suggestionCode)
                     });
-                    saveBtnRef.setAttribute('data-id', param.code);
                     // Success
                 } catch (e) {
                     // Failure
