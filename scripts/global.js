@@ -3,7 +3,7 @@ window.comidas = window.comidas || {};
 (exports => {
     const auth = firebase.auth();
 
-    exports.buildFetchQuery = function (
+    exports.buildFetchQuery = function(
         collectionName = '',
         opts = {
             document: '',
@@ -41,11 +41,11 @@ window.comidas = window.comidas || {};
         return query;
     };
 
-    exports.fetchDocument = function (collectionName, document) {
+    exports.fetchDocument = function(collectionName, document) {
         return exports.buildFetchQuery(collectionName, { document }).get();
     };
 
-    exports.fetchDocuments = function (collectionName, filters) {
+    exports.fetchDocuments = function(collectionName, filters) {
         return new Promise((resolve, reject) => {
             exports.buildFetchQuery(collectionName, { filters }).get()
                 .then(snapshot => resolve(snapshot.docs))
@@ -53,14 +53,14 @@ window.comidas = window.comidas || {};
         });
     };
 
-    exports.fetchCurrentUserId = function () {
+    exports.fetchCurrentUserId = function() {
         return new Promise((resolve, reject) => auth.onAuthStateChanged(user => {
             if (user) resolve(user.uid);
             else reject(new Error('user is not signed in'));
         }));
     };
 
-    exports.fetchCurrentUserDocument = function (uid = '') {
+    exports.fetchCurrentUserDocument = function(uid = '') {
         return new Promise((resolve, reject) => {
             if (uid) return resolve(exports.fetchDocument('users', uid));
 
@@ -70,7 +70,7 @@ window.comidas = window.comidas || {};
         });
     };
 
-    exports.readUrlParams = function () {
+    exports.readUrlParams = function() {
         const paramString = window.location.search.substring(1);
 
         if (paramString === '') return {};
@@ -81,7 +81,7 @@ window.comidas = window.comidas || {};
     };
 })(window.comidas.exports = window.comidas.exports || {});
 
-(async () => {
+(async() => {
     $('nav.navbar').load('../_partials/header.html');
     $('footer.footer').load('../_partials/footer.html');
 
@@ -94,4 +94,11 @@ window.comidas = window.comidas || {};
     } catch (e) {
         console.error(e);
     }
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            $(".navbar__items").show()
+        } else {
+            $(".navbar__items").hide()
+        }
+    });
 })();
