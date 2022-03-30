@@ -4,7 +4,7 @@
     async function fetchGroupsByType(groupType) {
         const docs = await fetchDocuments('groups', { where: [`type == ${groupType}`] });
 
-        return docs.filter(doc => doc.data().members.length < 1);
+        return docs.filter(doc => doc.data().members.length < 6);
     }
 
     async function fetchGroupById(groupId) {
