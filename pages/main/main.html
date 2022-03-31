@@ -25,17 +25,15 @@
 
     <div class="container-lg mb-5">
         <div class="row">
-            <section region="group" class="col-xs-12 my-3">
-                <h1 class="text-center mb-5">Welcome back, <span id="username">...</span>!</h1>
-
+            <section region="group" class="u-inner-shadow col-xs-12">
                 <template id="t-member">
-                    <div class="member row py-2 bg-primary">
+                    <div class="member row py-2">
                         <div class="col col-2">
-                            <img src="../../images/placeholder.png" alt="Profile Picture"
-                                class=" member__picture img-fluid rounded-circle">
+                            <div class="text-center fs-1 bi bi-person-fill"></div>
                         </div>
                         <div class="col col-10 d-flex">
-                            <span class="member__name align-self-center text-white">Firstname Lastname</span>
+                            <span class="member__name align-self-center">Firstname Lastname</span>
+                            <i class="me-3 ms-auto align-self-center bi bi-chevron-right"></i>
                         </div>
                     </div>
                 </template>
@@ -58,7 +56,7 @@
                     </div>
                 </template>
 
-                <h1 class="u-section-header mb-3 gap-1">Suggestions</h1>
+                <h1 class="u-section-header text-center my-4 mt-3 gap-1">Suggestions</h1>
                 <div class="row u-card-group"></div>
             </section>
         </div>
