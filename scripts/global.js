@@ -88,9 +88,10 @@ window.comidas = window.comidas || {};
     const { fetchCurrentUserId } = window.comidas.exports;
 
     try {
-        await fetchCurrentUserId();
+        const filename = (new URL(window.location.href)).pathname.split('/').pop();
+        if (filename !== 'index.html' && filename !== 'login.html') await fetchCurrentUserId();
     } catch (e) {
-        console.error(e);
+        window.location.assign('../login/login.html');
     }
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
