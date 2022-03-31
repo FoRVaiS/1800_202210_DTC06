@@ -1,5 +1,9 @@
 /* Contains styles used throughout the entire website */
 
+:root {
+    --bs-dark-rgb: 28,28,28
+}
+
 *,
 *::before,
 *::after {
@@ -17,84 +21,8 @@ body {
     height: 100vh;
 }
 
-.navbar {
-    display: grid;
-    grid-template-columns: max-content 1fr max-content;
-    box-sizing: border-box;
-    color: white;
-    background-color: #1c1c1c;
-
-    grid-row: navigation / span 1;
-}
-
-@media screen and (max-width: 768px) {
-    .navbar {
-        grid-template-areas: "navbar__hamburger navbar__title navbar__profile-picture";
-    }
-    .navbar__hamburger {
-        padding-inline: 16px;
-    }
-    .navbar__items,
-    .navbar__item {
-        display: none;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .navbar {
-        grid-template-areas: "navbar__title navbar__items navbar__profile-picture";
-    }
-    .navbar__hamburger,
-    .navbar__hamburger-icon {
-        display: none;
-    }
-    .navbar__title {
-        padding-inline: 16px;
-    }
-}
-
-.navbar__hamburger {
-    display: inline-flex;
-    grid-area: navbar__hamburger;
-}
-
-.navbar__hamburger,
-.navbar__hamburger-icon {
-    align-self: center;
-}
-
-.navbar__title {
-    grid-area: navbar__title;
-    justify-self: center;
-}
-
-.navbar__items {
-    display: flex;
-    grid-area: navbar__items;
-    align-items: center;
-}
-
-.navbar__item {
-    padding: 16px;
-}
-
-.navbar__profile[data-signed-in] {
-    display: inline-flex;
-}
-
-.navbar__profile {
-    display: none;
-    grid-area: navbar__profile-picture;
-    padding-inline: 16px;
-}
-
-.navbar__profile-icon {
-    border-radius: 50%;
-}
-
-.navbar__profile,
-.navbar__profile-icon {
-    align-self: center;
+#navbar {
+    z-index: 2;
 }
 
 .footer {
