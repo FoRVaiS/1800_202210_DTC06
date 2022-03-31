@@ -24,15 +24,3 @@
 .party__profile-picture {
   border-radius: 50%;
 }
-
-.findGroupBtn {
-  /* margin: 20% 0; */
-}
-
-.findGroupBtn button{
-  padding: 1.6rem;
-  font-size: x-large;
-  font-weight: 550;
-  border-radius: 25px;
-  /* width: 80%; */
-}
