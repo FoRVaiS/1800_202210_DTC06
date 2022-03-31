@@ -82,7 +82,7 @@ window.comidas = window.comidas || {};
 })(window.comidas.exports = window.comidas.exports || {});
 
 (async () => {
-    $('nav#navbar').load('../_partials/header.html');
+    $('nav.navbar').load('../_partials/header.html');
     $('footer.footer').load('../_partials/footer.html');
 
     const { fetchCurrentUserId } = window.comidas.exports;

@@ -17,11 +17,11 @@ a {
 
 body {
     display: grid;
-    grid-template-rows: [navigation] 72px 1fr [footer] 128px;
+    grid-template-rows: [navigation] min-content 1fr [footer] min-content;
     height: 100vh;
 }
 
-#navbar {
+.navbar {
     z-index: 2;
 }
 
