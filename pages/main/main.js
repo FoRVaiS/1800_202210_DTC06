@@ -1,10 +1,12 @@
 (async () => {
+    const MEMBERS_PER_GROUP = 5;
+
     const { fetchCurrentUserDocument, fetchDocuments, fetchDocument } = window.comidas.exports;
 
     async function fetchGroupsByType(groupType) {
         const docs = await fetchDocuments('groups', { where: [`type == ${groupType}`] });
 
-        return docs.filter(doc => doc.data().members.length < 1);
+        return docs.filter(doc => doc.data().members.length <= MEMBERS_PER_GROUP);
     }
 
     async function fetchGroupById(groupId) {
