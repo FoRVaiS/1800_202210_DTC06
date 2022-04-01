@@ -51,8 +51,9 @@
         return fetchGroupById(group.ref.id);
     }
 
-    function appendMemberToView({ name }) {
+    function appendMemberToView(name, id) {
         const memberRow = document.querySelector('#t-member').content.cloneNode(true);
+        memberRow.querySelector('.member').setAttribute('href', `../profile/profile.html?id=${id}`);
         memberRow.querySelector('.member__name').textContent = name;
 
         document.querySelector("section[region='group'").append(memberRow);
@@ -126,7 +127,7 @@
 
         const memberDocs = await Promise.all(currentGroup.data().members.map(reference => reference.get()));
 
-        memberDocs.map(doc => doc.data()).forEach(appendMemberToView);
+        memberDocs.forEach(doc => appendMemberToView(doc.data().name, doc.ref.id));
         populateCardsDynamically(userData.type);
     } catch (e) {
         console.error(e);

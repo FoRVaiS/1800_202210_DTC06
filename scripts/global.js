@@ -82,10 +82,15 @@ window.comidas = window.comidas || {};
 })(window.comidas.exports = window.comidas.exports || {});
 
 (async () => {
-    $('nav.navbar').load('../_partials/header.html');
-    $('footer.footer').load('../_partials/footer.html');
-
     const { fetchCurrentUserId } = window.comidas.exports;
+
+    $('nav.navbar').load('../_partials/header.html', async () => {
+        Array.from(document.querySelectorAll('nav.navbar .nav-link'))
+            .filter(link => link.textContent.toLowerCase() === 'profile')
+            .pop()
+            .setAttribute('href', `../profile/profile.html?id=${await fetchCurrentUserId()}`)
+    });
+    $('footer.footer').load('../_partials/footer.html');
 
     try {
         const filename = (new URL(window.location.href)).pathname.split('/').pop();
