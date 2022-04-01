@@ -61,8 +61,13 @@
     document.querySelector('#editButton').onclick = editUserInfo;
     document.querySelector('#saveButton').onclick = saveUserInfo;
 
-    function createCard({ name: title, description, address, image, id }) {
+    async function createCard({ name: title, description, address, image, id }) {
+
         const testHikeCard = document.querySelector('#profile__fav-card').content.cloneNode(true);
+        const bookmarkRef = testHikeCard.querySelector('.bookmark');
+        displayBookmarkState(bookmarkRef, await fetchBookmarkState(id));
+        bookmarkRef.onclick = () => toggleBookmarkState(bookmarkRef, id);
+
         testHikeCard.querySelector('.fav-card__title').innerText = title;
         testHikeCard.querySelector('.fav-card__description').innerText = description;
         testHikeCard.querySelector('.fav-card__location').innerText = address;
@@ -70,6 +75,35 @@
         testHikeCard.querySelector('img').src = image;
 
         document.querySelector('#fav-card__group').appendChild(testHikeCard);
+    }
+
+    function displayBookmarkState(ref, shouldToggle) {
+        if (shouldToggle) {
+            ref.classList.remove('bi-bookmark');
+            ref.classList.add('bi-bookmark-fill');
+        } else {
+            ref.classList.remove('bi-bookmark-fill');
+            ref.classList.add('bi-bookmark');
+        }
+    }
+
+    async function fetchBookmarkState(id) {
+        const snapshot = await fetchCurrentUserDocument();
+
+        return snapshot.data().favourites.includes(id.toUpperCase());
+    }
+
+    async function toggleBookmarkState(ref, id) {
+        const snapshot = await fetchCurrentUserDocument();
+        const currentState = await fetchBookmarkState(id);
+
+        if (!currentState) {
+            await snapshot.ref.update({ favourites: firebase.firestore.FieldValue.arrayUnion(id.toUpperCase()) })
+            displayBookmarkState(ref, true);
+        } else {
+            await snapshot.ref.update({ favourites: firebase.firestore.FieldValue.arrayRemove(id.toUpperCase()) })
+            displayBookmarkState(ref, false)
+        }
     }
 
     fetchCurrentUserDocument()

@@ -58,21 +58,58 @@
         document.querySelector("section[region='group'").append(memberRow);
     }
 
+    function displayBookmarkState(ref, shouldToggle) {
+        if (shouldToggle) {
+            ref.classList.remove('bi-bookmark');
+            ref.classList.add('bi-bookmark-fill');
+        } else {
+            ref.classList.remove('bi-bookmark-fill');
+            ref.classList.add('bi-bookmark');
+        }
+    }
+
+    async function fetchBookmarkState(id) {
+        const snapshot = await fetchCurrentUserDocument();
+
+        return snapshot.data().favourites.includes(id.toUpperCase());
+    }
+
+    async function toggleBookmarkState(ref, id) {
+        const snapshot = await fetchCurrentUserDocument();
+        const currentState = await fetchBookmarkState(id);
+
+        if (!currentState) {
+            await snapshot.ref.update({ favourites: firebase.firestore.FieldValue.arrayUnion(id.toUpperCase()) })
+            displayBookmarkState(ref, true);
+        } else {
+            await snapshot.ref.update({ favourites: firebase.firestore.FieldValue.arrayRemove(id.toUpperCase()) })
+            displayBookmarkState(ref, false)
+        }
+    }
+
     function populateCardsDynamically(type) {
         const suggestionsCardTemplate = document.querySelector("section[region='suggestions'] template#suggestions_card");
         const suggestionsCardGroup = document.querySelector("section[region='suggestions'] .u-card-group");
 
         fetchDocuments(type)
-            .then(docs => docs.forEach(doc => {
+            .then(docs => docs.forEach(async doc => {
                 const { name, id, description, image } = doc.data();
 
                 const suggestionCard = suggestionsCardTemplate.content.cloneNode(true);
+                const bookmarkRef = suggestionCard.querySelector('.bookmark');
+
+                displayBookmarkState(bookmarkRef, await fetchBookmarkState(id))
+
+                suggestionCard.querySelector('.card');
                 suggestionCard.querySelector('.card-title').innerHTML = name;
-                suggestionCard.querySelector('.card-length').innerHTML = description;
+                suggestionCard.querySelector('.card-text').innerHTML = description;
                 suggestionCard.querySelector('.card-btn').onclick = () => window.location.assign(`../page_info_template/page_info_template.html?code=${id.toUpperCase()}`);
                 suggestionCard.querySelector('img').src = image;
 
+                bookmarkRef.onclick = () => toggleBookmarkState(bookmarkRef, id);
+
                 suggestionsCardGroup.appendChild(suggestionCard);
+
             }))
             .catch(console.error);
     }
