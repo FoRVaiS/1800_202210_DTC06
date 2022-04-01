@@ -101,11 +101,11 @@
         const currentState = await fetchBookmarkState(id);
 
         if (!currentState) {
-            await snapshot.ref.update({ favourites: firebase.firestore.FieldValue.arrayUnion(id.toUpperCase()) })
             displayBookmarkState(ref, true);
+            await snapshot.ref.update({ favourites: firebase.firestore.FieldValue.arrayUnion(id.toUpperCase()) })
         } else {
-            await snapshot.ref.update({ favourites: firebase.firestore.FieldValue.arrayRemove(id.toUpperCase()) })
             displayBookmarkState(ref, false)
+            await snapshot.ref.update({ favourites: firebase.firestore.FieldValue.arrayRemove(id.toUpperCase()) })
         }
     }
 
