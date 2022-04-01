@@ -1,10 +1,12 @@
-(() => {
+(async () => {
     $('#personalInfoInput').hide();
 
-    const { fetchCurrentUserDocument, fetchDocuments } = window.comidas.exports;
+    const { fetchCurrentUserDocument, fetchDocument, fetchDocuments, readUrlParams } = window.comidas.exports;
+    const params = readUrlParams();
 
     // get the document for current user.
-    fetchCurrentUserDocument()
+    // fetchCurrentUserDocument()
+    await fetchDocument('users', params.id)
         .then(userDoc => {
             // get the data fields of the user
             const userName = userDoc.data().name;
@@ -43,7 +45,8 @@
         const userBio = document.getElementById('bioInput').value;
 
         // write/update the database
-        fetchCurrentUserDocument()
+        // fetchCurrentUserDocument()
+        fetchDocument('users', params.id)
             .then(userDoc => userDoc.ref.update({
                 name: userName,
                 email: userEmail,
@@ -106,7 +109,9 @@
         }
     }
 
-    fetchCurrentUserDocument()
+
+    // fetchCurrentUserDocument()
+    await fetchDocument('users', params.id)
         .then(userDoc => userDoc.data())
         .then(data => Promise.all(data.favourites.map(code => fetchDocuments(data.type, { where: [`id == ${code.toUpperCase()}`] }))))
         .then(suggestionDocs => suggestionDocs.flat().map(doc => doc.data()).forEach(createCard))
