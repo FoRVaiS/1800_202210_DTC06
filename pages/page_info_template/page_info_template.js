@@ -1,19 +1,20 @@
+//** function to display additional information when clicking the readmore button on the suggestion card */
 (() => {
     const params = Object.fromEntries(window.location.search.substring(1).split('&').map(param => param.split('=')));
-
+    // populate cards based on user type
     async function populateCardsDynamically(type) {
 
         const snapshot = await db.collection(type).where('id', '==', params.code).get();
 
         const [doc] = snapshot.docs;
-
+        // set vars for each piece of info we want to get from firestore db colelction
         const infoCardImage = doc.data().image;
         const infoCardName = doc.data().name;
         const infoCardAddress = doc.data().address;
         const infoCardHours = doc.data().hours;
         const infoCardWebsite = doc.data().website;
         const infoCardPhone = doc.data().phone;
-
+        // attach the selected info from firestore to html divs
         document.querySelector('#picture').setAttribute("src", infoCardImage);
         document.querySelector('.card-title').innerHTML = infoCardName;
         document.querySelector('.card-address').innerHTML = infoCardAddress;
@@ -21,7 +22,7 @@
         document.querySelector('.card-website').innerHTML = infoCardWebsite;
         document.querySelector('.card-phone').innerHTML = infoCardPhone;
     }
-
+    //** function to check which "type" the user is */
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             db.collection('users').doc(user.uid).get().then(doc => {
@@ -40,7 +41,7 @@
             });
         }
     });
-
+    // code for the bookmark/save button
     const saveBtnRef = document.querySelector('#saveIcon');
 
     saveBtnRef.setAttribute('data-id', params.code);
