@@ -125,14 +125,23 @@ window.comidas = window.comidas || {};
 (async () => {
     const { fetchCurrentUserId } = window.comidas.exports;
 
-    // Load partials.
-    $('nav.navbar').load('../_partials/header.html', async () => {
-        Array.from(document.querySelectorAll('nav.navbar .nav-link'))
-            .filter(link => link.textContent.toLowerCase() === 'profile')
-            .pop()
-            .setAttribute('href', `../profile/profile.html?id=${await fetchCurrentUserId()}`)
-    });
-    $('footer.footer').load('../_partials/footer.html');
+    // Load Partials.
+    Promise.all([
+        new Promise(resolve => $('nav.navbar').load('../_partials/header.html', resolve)),
+        new Promise(resolve => $('footer.footer').load('../_partials/footer.html', resolve)),
+    ])
+    .finally(async () => {
+        try {
+            const id = await fetchCurrentUserId(); // User is signed in
+
+            Array.from(document.querySelectorAll('nav.navbar .nav-link'))
+                .filter(link => link.textContent.toLowerCase() === 'profile')
+                .pop()
+                .setAttribute('href', `../profile/profile.html?id=${id}`)
+        } catch (e) {
+            $(".nav-item").hide();
+        }
+    })
 
     // Redirect VISITORS to login.html if they're attempting to access a page for logged-in users.
     try {
