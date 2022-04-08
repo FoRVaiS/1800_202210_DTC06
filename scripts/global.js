@@ -139,7 +139,22 @@ window.comidas = window.comidas || {};
                 .pop()
                 .setAttribute('href', `../profile/profile.html?id=${id}`)
         } catch (e) {
-            $(".nav-item").hide();
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.style.display = 'none';
+            });
+
+            /** @type {HTMLLIElement} */
+            const navBtn = document.createElement('li');
+            navBtn.classList.add('nav-item');
+    
+            /** @type {HTMLAnchorElement} */
+            const navLink = document.createElement('a');
+            navLink.textContent = 'Login';
+            navLink.classList.add('nav-link');
+            navLink.href = '../login/login.html';
+            navBtn.append(navLink);
+    
+            document.querySelector('ul.navbar-nav').append(navBtn);
         }
     })
 
@@ -150,13 +165,4 @@ window.comidas = window.comidas || {};
     } catch (e) {
         window.location.assign('../login/login.html');
     }
-
-    // Show navbar items if you're logged in, hide if you're a visitor.
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            $(".nav-item").show()
-        } else {
-            $(".nav-item").hide()
-        }
-    });
 })();
