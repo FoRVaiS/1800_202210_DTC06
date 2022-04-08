@@ -5,7 +5,6 @@
     const params = readUrlParams();
 
     // get the document for current user.
-    // fetchCurrentUserDocument()
     await fetchDocument('users', params.id)
         .then(userDoc => {
             // get the data fields of the user
@@ -30,6 +29,7 @@
         })
         .catch(console.error);
 
+    /** Toggles the edit user profile menu. */
     function editUserInfo() {
         $('#personalInfoInput').toggle();
 
@@ -37,7 +37,7 @@
         document.getElementById('personalInfoInput').disabled = false;
     }
 
-    // Save data from user
+    /** Updates the user document with values from input form */
     function saveUserInfo() {
         const userName = document.getElementById('nameInput').value;
         const userEmail = document.getElementById('emailInput').value;
@@ -45,8 +45,8 @@
         const userBio = document.getElementById('bioInput').value;
 
         // write/update the database
-        // fetchCurrentUserDocument()
         fetchDocument('users', params.id)
+            // Update operation
             .then(userDoc => userDoc.ref.update({
                 name: userName,
                 email: userEmail,
@@ -64,8 +64,16 @@
     document.querySelector('#editButton').onclick = editUserInfo;
     document.querySelector('#saveButton').onclick = saveUserInfo;
 
+    /**
+     *
+     * @param {object} suggestionInfo Details of a suggestion preview card.
+     * @param {string} suggestionInfo.name Name of the suggestion.
+     * @param {string} suggestionInfo.description Description of the suggestion.
+     * @param {string} suggestionInfo.address Address of the suggestion.
+     * @param {string} suggestionInfo.image Image URL of the suggestion.
+     * @param {string} suggestionInfo.id ID of the suggestion.
+     */
     async function createCard({ name: title, description, address, image, id }) {
-
         const testHikeCard = document.querySelector('#profile__fav-card').content.cloneNode(true);
         const bookmarkRef = testHikeCard.querySelector('.bookmark');
         displayBookmarkState(bookmarkRef, await fetchBookmarkState(id));
@@ -80,6 +88,12 @@
         document.querySelector('#fav-card__group').appendChild(testHikeCard);
     }
 
+    /**
+     * Set bookmark fill state.
+     *
+     * @param {HTMLElement} ref A document reference to a bookmark icon.
+     * @param {boolean} shouldToggle Should the icon be filled?
+     */
     function displayBookmarkState(ref, shouldToggle) {
         if (shouldToggle) {
             ref.classList.remove('bi-bookmark');
@@ -90,12 +104,24 @@
         }
     }
 
+    /**
+     * Fetch the current bookmark state by checking if an activity is in a user's favourites.
+     *
+     * @param {string} id Activity ID.
+     * @returns {boolean} Does user have this activity favourited?
+     */
     async function fetchBookmarkState(id) {
         const snapshot = await fetchCurrentUserDocument();
 
         return snapshot.data().favourites.includes(id.toUpperCase());
     }
 
+    /**
+     * Toggle the bookmark state
+     *
+     * @param {HTMLElement} ref A document reference to a bookmark icon.
+     * @param {string} id Activity ID.
+     */
     async function toggleBookmarkState(ref, id) {
         const snapshot = await fetchCurrentUserDocument();
         const currentState = await fetchBookmarkState(id);
@@ -109,8 +135,7 @@
         }
     }
 
-
-    // fetchCurrentUserDocument()
+    // Fetch all the suggestion documents that are favourited based on the viewd user's profile.
     await fetchDocument('users', params.id)
         .then(userDoc => userDoc.data())
         .then(data => Promise.all(data.favourites.map(code => fetchDocuments(data.type, { where: [`id == ${code.toUpperCase()}`] }))))
