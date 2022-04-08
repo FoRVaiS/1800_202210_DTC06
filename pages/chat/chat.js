@@ -10,7 +10,6 @@ function initChat() {
 
     // generate a random 4 digit ID
     chatid = Math.random().toString().substr(2, 4);
-    console.log(chatid);
     // add the chat timestamp to the firestore db collection
     db.collection("chats").doc(chatid).set({
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
